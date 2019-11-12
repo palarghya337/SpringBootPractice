@@ -22,12 +22,6 @@
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat7-maven-plugin -->
-		<dependency>
-    		<groupId>org.apache.tomcat.maven</groupId>
-    		<artifactId>tomcat7-maven-plugin</artifactId>
-    		<version>2.2</version>
-		</dependency>
 	</dependencies>
 	
 	<build>
