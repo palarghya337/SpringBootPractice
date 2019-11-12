@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ControllerOne {
 
-	@RequestMapping(value = "/")
+	@RequestMapping("/welcome")
 	public String requestMapping() {
 		return "Here you go... First Spring Boot Run";
 	}
