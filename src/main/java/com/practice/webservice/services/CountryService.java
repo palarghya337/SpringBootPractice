@@ -1,4 +1,4 @@
-package com.practice.springboot.service;
+package com.practice.webservice.services;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -8,7 +8,7 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Service;
 
-import com.practice.springboot.bean.Country;
+import com.practice.webservice.bean.Country;
 
 @Service(value = "countryService")
 public class CountryService {

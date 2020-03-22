@@ -1,4 +1,4 @@
-package com.practice.springboot.bean;
+package com.practice.webservice.bean;
 
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.practice.springboot.controllers;
+package com.practice.webservice.controllers;
 
 import java.util.Collection;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.practice.springboot.bean.Country;
-import com.practice.springboot.service.CountryService;
+import com.practice.webservice.bean.Country;
+import com.practice.webservice.services.CountryService;
 
 @RestController
 public class CountryController {
