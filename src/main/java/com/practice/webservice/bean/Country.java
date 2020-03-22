@@ -32,4 +32,8 @@ public class Country {
 	public void setPopulation(Integer population) {
 		this.population = population;
 	}
+	@Override
+	public String toString() {
+		return "Country [id=" + id + ", name=" + name + ", population=" + population + "]";
+	}
 }
