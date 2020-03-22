@@ -8,7 +8,9 @@ import java.util.Scanner;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
@@ -26,27 +28,66 @@ public class Client {
 	private static final String PORT = "http://localhost:8080/";
 	public static void main(String[] args) {
 		
-		Log.logInfo("\n1. allCountries\n2. Country\n3. Update Country");
+		Log.logInfo("\n1. allCountries\n2. Country\n3. Update Country\n"
+				+ "4. Add Country");
 		try (Scanner scan = new Scanner(System.in)) {
 			
 			int input = scan.nextInt();
 			switch(input) {
-			case 1:
+			case 1: {
 				Collection<?> allCountries = callGETMethod("allCountries", Collection.class);
 				allCountries.forEach(Log::logInfo);
 				break;
-			case 2:
+			}
+			case 2: {
 				Country country = callGETMethod("country/3", Country.class);
 				Log.logInfo(country);
 				break;
-			case 3:
+			}
+			case 3: {
 				Country updateCountry = callGETMethod("country/2", Country.class);
 				updateCountry.setPopulation(1110);
-				boolean isSuccessfull = callPUTMethod("updateCountry1", updateCountry);
-				Log.logInfo("isSuccessfull: {0}", isSuccessfull);
+				boolean isSuccessful = callPUTMethod("updateCountry", updateCountry);
+				Log.logInfo("isSuccessful: {0}", isSuccessful);
 				break;
 			}
+			case 4: {
+				Country newCountry = new Country(5, "Nepal");
+				newCountry.setPopulation(3000);
+				boolean isSuccessful = callPOSTMethod("addNewCountry", newCountry);
+				Log.logInfo("isSuccessfull: {0}", isSuccessful);
+				break;
+			}
+			case 5: {
+				callDELETEMethod("deleteCountry", 5);
+			}
+			}
 		}
+	}
+
+	private static void callDELETEMethod(String uri, int countryID) {
+		/*
+		 * 
+		 * HttpClient client = HttpClientBuilder.create().build(); HttpDelete
+		 * deleteRequest = new HttpDelete(PORT.concat(uri));
+		 * deleteRequest.setEntity(createHttpEntity(countryID)); try { HttpResponse
+		 * response = client.execute(deleteRequest); return
+		 * convertJsonToObject(Boolean.class, response); } catch (IOException e) {
+		 * Log.logInfo("Exception while getting response from server {0}", e); } return
+		 * false;
+		 */}
+	private static boolean callPOSTMethod(String uri, Country newCountry) {
+		
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpPost postRequest = new HttpPost(PORT.concat(uri));
+		postRequest.setEntity(createHttpEntity(newCountry));
+		try {
+			HttpResponse response = client.execute(postRequest);
+			return convertJsonToObject(Boolean.class, response);
+		} catch (IOException e) {
+			Log.logInfo("Exception while getting response from server {0}", e);
+		}
+		return false;
 	}
 	private static <T> boolean callPUTMethod(String uri, T toUpdateObject) {
 		

@@ -37,4 +37,16 @@ public class CountryService {
 		COUNTRY_MAP.put(country.getId(), country);
 		return true;
 	}
+
+	public boolean addNewCountry(Country country) {
+		Objects.requireNonNull(country);
+		COUNTRY_MAP.put(country.getId(), country);
+		return true;
+	}
+
+	public boolean deleteCountry(int countryID) {
+		
+		COUNTRY_MAP.remove(countryID);
+		return true;
+	}
 }
